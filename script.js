@@ -1,7 +1,12 @@
-function CalcularMedia(){
+function calcularMedia(){
     const textoNota1 = document.getElementById("nota1").value;
     const textoNota2 = document.getElementById("nota2").value;
     const textoNota3 = document.getElementById("nota3").value;
+
+    if (textoNota1 === "" || textoNota2 === "" || textoNota3 ===""){ 
+        alert("Preencha todas as notas!")
+        return;
+}
 
     const nota1 = Number(textoNota1);
     const nota2 = Number(textoNota2);
@@ -9,13 +14,17 @@ function CalcularMedia(){
 
     const media = (nota1 + nota2 + nota3) / 3;
 
-    let situação;
+    let situacao;
 
     if (media >= 7){
-        situação = "APROVADO"
+        situacao = "APROVADO"
+    } else if (media >= 5){
+        situacao = "RECUPERAÇÃO";
+    } else {
+        situacao = "REPROVADO"
     }
-    if (media >= 5){
-        situação = "RECUPERAÇÃO"
-    }
-    
+    const mediaformatada = media.toFixed(1)
+
+    document.getElementById("resultado").textContent = "Media: "+ mediaformatada + " - Situação: "+ situacao;
+
 }
